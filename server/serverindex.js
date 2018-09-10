@@ -3,6 +3,7 @@ const app = express();
 
 app.use(express.static(__dirname + './client/dist'))
 
+// adding this comment so that i have something to commit
 app.get('', (req, res) => {
   res.send('hello')
 });
