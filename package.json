@@ -1,17 +1,23 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "OGBNB",
+  "version": "2.0.0",
+  "description": "showing a single user listing and all of it's major components",
+  "author": "Andrew Mac",
+  "license": "MIT",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "react-dev": "webpack -d --watch"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
   }
 }
