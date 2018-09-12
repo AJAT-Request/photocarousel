@@ -14,7 +14,20 @@ const listingSchema = new mongoose.Schema({
   }]
 });
 
+let save = () => {
+  console.log('mongoose save function');
+};
+
+let find = () => {
+  console.log('mongoose find function');
+};
 // thinking about adding a new method to iterate through the photos array and then saving that to the 
 // database. Not yet sure how to do that. I'll revisit this idea later
 
 let Listing = mongoose.model('Listing', listingSchema);
+
+
+module.exports = {
+  save,
+  find,
+}
