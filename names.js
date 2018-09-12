@@ -1,4 +1,4 @@
-var rooms = [
+let rooms = [
   'Sherman Oak\'s Mansion',
   'Charles Mansion',
   'All Inclusive Garage',
@@ -100,3 +100,7 @@ var rooms = [
   'Paul Bunyon\'s sock',
   'Santa\'s workshop'
 ];
+
+module.exports = {
+  rooms
+}

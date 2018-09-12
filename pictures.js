@@ -1,4 +1,4 @@
-const pictures = [
+let pictures = [
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/126374d2-69b6-4695-887f-aeee6345e7f1.jpg",
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/2a4637ae-4322-4623-9475-aad69250ba90.jpg",
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/2bb8efaa-a493-4624-811b-5efb682da346.jpg",
@@ -14,4 +14,8 @@ const pictures = [
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/b6e722c0-ebb6-4e10-bde9-114635a6c223.jpg",
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/cdbcfc5d-3460-4133-b238-9f3f4dd6afbb.jpg",
   "https://s3-us-west-1.amazonaws.com/photocarouselbuckets/Photo+carousel+photos/d20af707-e5d0-4525-ac11-e3c195cf4254.jpg",
-]
+];
+
+module.exports = {
+  pictures
+}
