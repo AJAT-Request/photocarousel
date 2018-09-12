@@ -1,4 +1,5 @@
-const mongoose = requires('mongoose');
+const pregeneratedData = require('../generateddata.js');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/photocarousel');
 
 const db = mongoose.connection;
@@ -14,9 +15,17 @@ const listingSchema = new mongoose.Schema({
   }]
 });
 
-let save = () => {
-  console.log('mongoose save function');
-};
+let Listing = mongoose.model('Listing', listingSchema);
+
+pregeneratedData.generatedListingData.forEach(listing => {
+  let eachListing = new Listing({
+    id: listing.id,
+    name: listing.name,
+    photos: listing.photos
+  });
+  eachListing.save();
+});
+
 
 let find = () => {
   console.log('mongoose find function');
@@ -24,10 +33,9 @@ let find = () => {
 // thinking about adding a new method to iterate through the photos array and then saving that to the 
 // database. Not yet sure how to do that. I'll revisit this idea later
 
-let Listing = mongoose.model('Listing', listingSchema);
 
+console.log(pregeneratedData.generatedListingData);
 
 module.exports = {
-  save,
-  find,
+  find
 }
