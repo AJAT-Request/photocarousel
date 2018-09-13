@@ -1,12 +1,21 @@
-const db = require('./database/dbconnection.js');
+const db = require('../database/dbconnection.js');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + './client/dist'))
 
-// adding this comment so that i have something to commit
-app.get('', (req, res) => {
-  res.send('hello')
+app.get('/rooms/01', (req, res) => {
+  db.findOne((err, result) => {
+    if(err) {
+      console.log('there was an error retreiving data from the database', err);
+      throw err;
+    } else {
+      console.log('i am a get function');
+      res.send(result);
+    }
+  });
 });
 
 var PORT = process.env.PORT || 8080;

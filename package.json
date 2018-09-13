@@ -7,7 +7,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "node ./generateddata.js",
+    "seed": "node ./database/dbconnection.js",
+    "server-dev": "nodemon ./server/serverindex.js",
     "build": "webpack --mode=development --watch"
   },
   "dependencies": {

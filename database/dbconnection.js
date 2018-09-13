@@ -27,7 +27,8 @@ pregeneratedData.generatedListingData.forEach(listing => {
 });
 
 
-let find = () => {
+let findOne = (callback) => {
+  Listing.findOne({id: 1}).exec(callback);
   console.log('mongoose find function');
 };
 // thinking about adding a new method to iterate through the photos array and then saving that to the 
@@ -37,5 +38,5 @@ let find = () => {
 console.log(pregeneratedData.generatedListingData);
 
 module.exports = {
-  find
+  findOne
 }
