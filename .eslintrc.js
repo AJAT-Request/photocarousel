@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js',
-  env: {
-    browser: 'true',
-    node: 'true'
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
   }
 };
