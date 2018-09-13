@@ -17,6 +17,10 @@ const listingSchema = new mongoose.Schema({
 
 let Listing = mongoose.model('Listing', listingSchema);
 
+//clears the database
+Listing.deleteMany({});
+
+//refills the database with 100 listings
 pregeneratedData.generatedListingData.forEach(listing => {
   let eachListing = new Listing({
     id: listing.id,
@@ -31,11 +35,6 @@ let findOne = (callback) => {
   Listing.findOne({id: 1}).exec(callback);
   console.log('mongoose find function');
 };
-// thinking about adding a new method to iterate through the photos array and then saving that to the 
-// database. Not yet sure how to do that. I'll revisit this idea later
-
-
-console.log(pregeneratedData.generatedListingData);
 
 module.exports = {
   findOne
