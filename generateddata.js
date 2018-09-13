@@ -48,17 +48,13 @@ let generateListings = (photos) => {
     listing.id = i;
     listing.name = rooms[i];
     listing.photos = shuffledPhotos;
-    console.log(listing)
     generatedListingData.push(listing);
   }
   return generatedListingData
 }
 
 generatePhotosforListing();
-
 generateListings(listingPhotos);
-
-console.log(generatedListingData)
 
 module.exports = {
   generatedListingData
