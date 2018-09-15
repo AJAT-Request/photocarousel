@@ -1,11 +1,13 @@
-const generatedListing = require('./pictures.js');
-const generatedListings = require('./names.js');
 const _ = require('underscore');
 const faker = require('faker');
+const { photos } = require('./pictures.js');
+const { rooms } = require('./names.js');
+const db = require('./database/dbconnection.js');
 
-let generatedListingData = [];
+const generatedListingData = [];
+const listingPhotos = [];
 
-let uniqueRoomTypes = [
+const uniqueRoomTypes = [
   'barn',
   'Camper',
   'RV',
@@ -15,50 +17,56 @@ let uniqueRoomTypes = [
   'Igloo',
   'Light house',
   'Tent',
-  'Treehouse'
+  'Treehouse',
 ];
 
-let rooms = generatedListings.rooms;
-let listingPhotosData = generatedListing.pictures;
-let listingPhotos = [];
+const formatDescription = (uniqueRoom) => {
+  const uniqueDescription = faker.fake(`${'{{commerce.productAdjective}} {{company.catchPhraseAdjective}} {{commerce.color}}' + ' '}${uniqueRoom}`).split(' ');
+  const capitalizedDesc = uniqueDescription.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  return capitalizedDesc.join(' ');
+};
 
-let formatDescription = (uniqueRoom) => {
-  let uniqueDescription = faker.fake("{{commerce.productAdjective}} {{company.catchPhraseAdjective}} {{commerce.color}}"  + ' ' +  uniqueRoom).split(' ');
-  let capitalizedDesc = uniqueDescription.map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1)
-    );
-    return capitalizedDesc.join(' ')
-}
-  
-let generatePhotosforListing = () => {
-  for (let j = 0; j < listingPhotosData.length; j++) {
-    let onePhoto = {};
-    onePhoto.url = listingPhotosData[j];
+const generatePhotosforListing = () => {
+  for (let j = 0; j < photos.length; j + 1) {
+    const onePhoto = {};
+    onePhoto.url = photos[j];
     onePhoto.description = formatDescription(_.sample(uniqueRoomTypes));
-    onePhoto.isverified = faker.fake("{{random.boolean}}")
+    onePhoto.isverified = faker.fake('{{random.boolean}}');
     listingPhotos.push(onePhoto);
   }
-}
-  
-  
-let generateListings = (photos) => {
-  for (let i = 0; i < rooms.length; i++) {
-    let shuffledPhotos = _.shuffle(photos);
-    let listing = {};
+};
+
+
+const generateListings = (picturesForEachListing) => {
+  for (let i = 0; i < rooms.length; i + 1) {
+    const shuffledPhotos = _.shuffle(picturesForEachListing);
+    const listing = {};
     listing.id = i;
     listing.name = rooms[i];
     listing.photos = shuffledPhotos;
     generatedListingData.push(listing);
   }
-  return generatedListingData
-}
+  return generatedListingData;
+};
 
 generatePhotosforListing();
 generateListings(listingPhotos);
 
-module.exports = {
-  generatedListingData
-}
+// clears the database
+db.Listing.deleteMany({});
 
-  
-  
+// refills the database with 100 listings
+generatedListingData.forEach((listing) => {
+  const eachListing = new db.Listing({
+    id: listing.id,
+    name: listing.name,
+    photos: listing.photos,
+  });
+
+  eachListing.save((err, result) => {
+    if (err) {
+      return err;
+    }
+    console.log(result);
+  });
+});
