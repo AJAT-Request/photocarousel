@@ -1,4 +1,4 @@
-let rooms = [
+const rooms = [
   'Sherman Oak\'s Mansion',
   'Charles Mansion',
   'All Inclusive Garage',
@@ -98,9 +98,9 @@ let rooms = [
   'Tempest',
   'Tent in the backyard',
   'Paul Bunyon\'s sock',
-  'Santa\'s workshop'
+  'Santa\'s workshop',
 ];
 
 module.exports = {
-  rooms
-}
+  rooms,
+};
