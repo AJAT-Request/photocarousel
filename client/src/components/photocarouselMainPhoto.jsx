@@ -4,6 +4,12 @@ class Photocarouselmainphoto extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      currentIndex: this.props.index,
+      photos: this.props.photos
+    }
+
+    this.handlesClickingMainPhoto = this.handlesClickingMainPhoto.bind(this);
     this.handleverifiedPhotos = this.handleverifiedPhotos.bind(this);
   }
   
@@ -15,12 +21,27 @@ class Photocarouselmainphoto extends React.Component {
     }
   }
 
+  handlesClickingMainPhoto() {
+    let { currentIndex, photos } = this.state;
+    let lastIndex = photos.length - 1;
+    let shouldResetIndex = currentIndex === lastIndex;
+    let index = shouldResetIndex ? 0 : currentIndex + 1;
+
+    this.setState({
+      currentIndex: index
+    })
+
+    this.props.handlesMainPhotoClick(index);
+  }
+
   render() {
     const {mainphoto} = this.props;
-    console.log(typeof mainphoto.isverified)
     return (
       <div>
-        <img src={mainphoto.url} />
+        <img 
+          src={mainphoto.url} 
+          onClick={this.handlesClickingMainPhoto}
+        />
         <div>{mainphoto.description}</div>
         <div>{this.handleverifiedPhotos()}</div>
       </div>

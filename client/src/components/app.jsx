@@ -17,12 +17,10 @@ class App extends React.Component {
 
   componentDidMount() {
     const id = window.location.pathname.slice(7);
-    console.log(id)
     $.ajax({
       url: `./photos`,
       method: 'GET',
       success: (roomData) => {
-        console.log("a successful get request",roomData)
         this.setState({
           mainPhoto: roomData.photos[0].url,
           photos: roomData.photos
