@@ -5,6 +5,7 @@ const Photothumbnail = ({photo, index}) => {
     <img 
       className="thumbnail" 
       src={photo.url}
+      index={index}   
     ></img>
   )
 }
