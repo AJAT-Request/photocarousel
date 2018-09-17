@@ -11,8 +11,8 @@ class Photocarousel extends React.Component {
     super(props);
 
     this.state = {
-      mainPhoto: null,
-      photoSlider: []
+      mainPhoto: this.props.photos[0],
+      photos: this.props.photos
     }
   }
 
@@ -23,10 +23,11 @@ class Photocarousel extends React.Component {
   // }
 
   render() {
-    const {photos} = this.props;
+    const {mainPhoto, photos} = this.state;
     return (
       <div>
-        <Photocarouselslider photos={photos}/>
+        <Photocarouselmainphoto mainphoto={mainPhoto} />
+        <Photocarouselslider photos={photos} />
       </div>
     )
   }
