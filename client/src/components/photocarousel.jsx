@@ -6,6 +6,14 @@ class Photocarousel extends React.component {
 
   }
   render() {
-    <
+    <div>
+      <Exitbutton />
+      <Leftbutton />
+      <Photocarouselmailphoto />
+      <Rightbutton />
+      <Photocarouselslider />
+    </div>
   }
 }
+
+export default Photocarousel;
