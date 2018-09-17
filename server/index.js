@@ -8,19 +8,22 @@ const app = express();
 app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyParser.json());
 
-app.get('/rooms/:id', (req, res) => {
-  const id = req.params.id;
-  console.log(id);
-  db.Listing.findOne({ id }, (err, result) => {
+let currentRoom = null;
+
+app.get('/rooms/photos/', (req, res) => {
+  db.Listing.findOne({ id: currentRoom }, (err, result) => {
     if (err) {
       console.log(err, 'this was an error in fetching data from the database');
     } else {
-      console.log(result);
       res.send(result);
     }
   });
 });
 
+app.get('/rooms/:id', (req, res) => {
+  currentRoom = req.params.id
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+})
 
 const PORT = process.env.PORT || 8080;
 

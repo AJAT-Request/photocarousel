@@ -6,22 +6,22 @@ class App extends React.Component {
     super()
 
     this.state = {
-      currentPage: 0,
+      currentView: 0,
       mainPhoto: null,
       photos: []
     }
+    
+    this.handlePictureClick = this.handlePictureClick.bind(this);
   }
 
   componentDidMount() {
-    // const id = window.location.pathname.slice(7);
-    // console.log(id)
+    const id = window.location.pathname.slice(7);
+    console.log(id)
     $.ajax({
-      url: `http://localhost:8080/rooms/02`,
+      url: `./photos`,
       method: 'GET',
       success: (roomData) => {
-        console.log(roomData.id)
-        console.log(roomData.photos)
-        console.log(roomData.name)
+        console.log("a successful get request",roomData)
         this.setState({
           mainPhoto: roomData.photos[0].url,
           photos: roomData.photos
@@ -33,12 +33,24 @@ class App extends React.Component {
     })
   }
 
+  handlePictureClick() {
+    this.setState({
+      currentView : currentView + 1
+    })
+  }
+
   render() {
-    return (
-      <div>
-        <img src={this.state.mainPhoto}></img>
-      </div>
-    )
+    if (this.state.currentView === 0) {
+      return (
+        <div>
+          <img src={this.state.mainPhoto} onClick={handlePictureClick}></img>
+        </div>
+      )
+    } else if (this.state.currentView === 1) {
+      return (
+        <Photocarousel photos={this.state.photos}/>
+      )
+    }
   }
 }
 
