@@ -2,8 +2,8 @@ import React from 'react';
 import Photocarouselslider from './photocarouselslider.jsx';
 import Photocarouselmainphoto from './photocarouselmainphoto.jsx';
 import Exitbutton from './exitbutton.jsx';
-import Leftbutton from './leftbutton.jsx';
-import Rightbutton from './rightbutton.jsx';
+import Leftarrow from './leftarrow.jsx';
+import Rightarrow from './rightarrow.jsx';
 
 
 class Photocarousel extends React.Component {
@@ -27,7 +27,7 @@ class Photocarousel extends React.Component {
     })
   }
 
-  handlesRightButtonClick() {
+  handlesRightArrowClick() {
 
   }
 
@@ -41,7 +41,11 @@ class Photocarousel extends React.Component {
           photos={photos}
           handlesMainPhotoClick={this.handlesMainPhotoClick}
         />
-
+        <Rightarrow 
+          index={currentIndex}
+          photos={photos}
+          handlesRightArrowClick={this.handlesRightArrowClick}
+        />
         <Photocarouselslider 
           photos={photos} 
         />
