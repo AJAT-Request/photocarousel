@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Photocarousel from './photocarousel.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -35,20 +36,21 @@ class App extends React.Component {
 
   handlePictureClick() {
     this.setState({
-      currentView : currentView + 1
+      currentView : this.state.currentView + 1
     })
   }
 
   render() {
-    if (this.state.currentView === 0) {
+    const {currentView, mainPhoto, photos} = this.state;
+    if (currentView === 0) {
       return (
         <div>
-          <img src={this.state.mainPhoto} onClick={handlePictureClick}></img>
+          <img src={mainPhoto} onClick={this.handlePictureClick}></img>
         </div>
       )
-    } else if (this.state.currentView === 1) {
+    } else if (currentView === 1) {
       return (
-        <Photocarousel photos={this.state.photos}/>
+        <Photocarousel photos={photos} />
       )
     }
   }
