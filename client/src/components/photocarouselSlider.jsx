@@ -1,14 +1,14 @@
 import React from 'react';
 import Photothumbnail from './photothumbnail.jsx';
 
-const Photocarouselslider = ({photos}) => {
-  console.log(photos)
+const Photocarouselslider = ({photos, handlesMainPhotoChange}) => {
   return (
     <div>
       {photos.map((photo, index) => (
         <Photothumbnail 
           photo={photo} 
           key={index} 
+          handlesMainPhotoChange={handlesMainPhotoChange}
         />
       ))}
     </div>

@@ -11,23 +11,40 @@ class Photocarousel extends React.Component {
     super(props);
 
     this.state = {
+      currentIndex: 0,
       mainPhoto: this.props.photos[0],
       photos: this.props.photos
     }
+
+    this.handlesMainPhotoClick = this.handlesMainPhotoClick.bind(this);
   }
 
-  // handlesMainPhotoChange() {
-  //   this.setState({
-  //     mainPhoto: 
-  //   });
-  // }
+  handlesMainPhotoClick(index) {
+    console.log('im here this is the current index', index);
+    this.setState({
+      currentIndex: index,
+      mainPhoto: this.state.photos[index]
+    })
+  }
+
+  handlesRightButtonClick() {
+
+  }
 
   render() {
-    const {mainPhoto, photos} = this.state;
+    const {currentIndex, mainPhoto, photos} = this.state;
     return (
       <div>
-        <Photocarouselmainphoto mainphoto={mainPhoto} />
-        <Photocarouselslider photos={photos} />
+        <Photocarouselmainphoto 
+          index={currentIndex}
+          mainphoto={mainPhoto} 
+          photos={photos}
+          handlesMainPhotoClick={this.handlesMainPhotoClick}
+        />
+
+        <Photocarouselslider 
+          photos={photos} 
+        />
       </div>
     )
   }
